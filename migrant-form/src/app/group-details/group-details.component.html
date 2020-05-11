@@ -1,0 +1,232 @@
+<mat-dialog-content>
+
+
+  <form
+  class="example-form"
+  (submit)="onSubmit(migrationForm)"
+  #migrationForm="ngForm"
+>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>First name</mat-label>
+          <input matInput
+          name="firstName"
+          ngModel
+          #firstName="ngModel"
+          required />
+          <mat-error *ngIf="firstName.invalid">Please enter First Name</mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput
+          name="lastName"
+          ngModel
+          #lastName="ngModel"
+          required/>
+          <mat-error *ngIf="lastName.invalid">Please enter Last Name</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Travelling From (Complete Address) </mat-label>
+      <textarea matInput placeholder="Ex. 100 Main St"
+      name="travellingFrom"
+      ngModel
+      #travellingFrom="ngModel"
+      required
+      ></textarea>
+      <mat-error *ngIf="lastName.invalid">Please enter travellingFrom</mat-error>
+    </mat-form-field>
+  </p>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>City (Travelling From)</mat-label>
+          <input matInput placeholder="Ex. Delhi" required
+          name="travellingCityFrom"
+          ngModel
+          #travellingCityFrom="ngModel"
+
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>State (Travelling From)</mat-label>
+          <input matInput placeholder="Ex. Delhi" required
+          name="travellingStateFrom"
+          ngModel
+          #travellingStateFrom="ngModel"
+
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Postal Code (Travelling From)</mat-label>
+          <input
+            matInput
+            maxlength="6"
+            placeholder="Ex. 94105"
+            value=""
+            required
+            name="postalCodeTravellingFrom"
+            ngModel
+            #postalCodeTravellingFrom="ngModel"
+
+          />
+          <!-- <mat-hint align="end">{{ postalCodeTravellingFrom.value.length }} / 6</mat-hint> -->
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <mat-form-field>
+    <mat-label>Choose travelling date</mat-label>
+    <input matInput [matDatepicker]="picker" required
+    name="date"
+    ngModel
+    #date="ngModel"
+     />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Travelling To (Complete Address)</mat-label>
+    <textarea matInput required
+    name="travellingTo"
+    ngModel
+    #travellingTo="ngModel"
+    ></textarea>
+  </mat-form-field>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>City (Travelling To)</mat-label>
+          <input matInput placeholder="Ex. Noida" required
+          name="travellingToCity"
+          ngModel
+          #travellingToCity="ngModel"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>State (Travelling To)</mat-label>
+          <input matInput placeholder="Ex. Uttar Pradesh" required
+          name="travellingToState"
+          ngModel
+          #travellingToState="ngModel"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Postal Code (Travelling To)</mat-label>
+          <input
+            matInput
+            maxlength="6"
+            placeholder="Ex. 201308"
+            value=""
+            required
+            name="postalCodeTravellingTo"
+          ngModel
+          #postalCodeTravellingTo="ngModel"
+          />
+          <!-- <mat-hint align="end">{{ postalCodeTravellingTo.value.length }} / 6</mat-hint> -->
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Aadhar Number</mat-label>
+          <input
+            matInput
+            minlength="12"
+            maxlength="12"
+            placeholder="Enter Aadhar Number"
+            value=""
+            required
+            name="aadharNumber"
+          ngModel
+          #aadharNumber="ngModel"
+          />
+          <!-- <mat-hint align="end">{{ postalCodeTravellingTo.value.length }} / 6</mat-hint> -->
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+
+  <button
+  mat-raised-button
+  color="accent"
+  style="float: right;"
+  type=""
+>
+  Submit
+</button>
+
+
+</form>
+
+<!--tabe code-->
+<div style="margin-top:5%">
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="tableShow">
+  <!-- Name Column -->
+  <ng-container matColumnDef="fname">
+    <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+  </ng-container>
+
+   <ng-container matColumnDef="lname">
+    <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+  </ng-container>
+
+  <!-- Travelling Column -->
+   <ng-container matColumnDef="travellingfrom">
+    <mat-header-cell *matHeaderCellDef> Travelling From </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.postalCodeTravellingFrom}} </mat-cell>
+  </ng-container>
+
+  <!--Date column-->
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef> Travelling Date </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+  </ng-container>
+
+  <!-- Travelling To Column -->
+  <ng-container matColumnDef="travellingto">
+    <mat-header-cell *matHeaderCellDef> Travelling To </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.postalCodeTravellingTo}} </mat-cell>
+  </ng-container>
+
+  <!--Aadhar Number Column-->
+  <ng-container matColumnDef="aadharnumber">
+    <mat-header-cell *matHeaderCellDef> Aadhar Number </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.aadharNumber}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+</div>
+<!--code ends-->
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+<button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
+
