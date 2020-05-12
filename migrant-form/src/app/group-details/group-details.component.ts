@@ -24,7 +24,7 @@ export class GroupDetailsComponent implements OnInit {
 
 
 }
-  displayedColumns: string[] = ['fname', 'lname', 'travellingfrom','date','travellingto','aadharnumber'];
+  displayedColumns: string[] = ['fname', 'lname', 'gender','age','travellingfrom','date','travellingto','aadharnumber'];
   dataSource = this.tableData;
 
 

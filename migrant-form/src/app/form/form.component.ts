@@ -18,7 +18,6 @@ export class FormComponent implements OnInit {
 
   gender = '';
   checked = '';
- // indeterminate = false;
   options=['Fever','Dry Cough','Tiredness','Loss of Smell/Taste','Headache','Breathing Issue']
 
   onSubmit(form:NgForm){
@@ -26,11 +25,53 @@ export class FormComponent implements OnInit {
       return;
     }
     else{
-      this.formValues=form.value;
-      console.log('values:',this.formValues);
+     // this.formValues=form.value;
+      console.log('basic Details:',form.value);
      form.resetForm();
     }
   }
+
+
+  onSubmitProfessional(form:NgForm){
+    if(form.invalid){
+      return;
+    }
+    else{
+      //this.formValues=form.value;
+      console.log('professional Details:',form.value);
+     form.resetForm();
+    }
+  }
+
+
+
+  onSubmitCovidQues(form:NgForm){
+    if(form.invalid){
+      return;
+    }
+    else{
+      //this.formValues=form.value;
+      console.log('covid value selected :',form.value);
+     form.resetForm();
+    }
+  }
+
+
+  onSubmitImmediateHelp(form:NgForm){
+    if(form.invalid){
+      return;
+    }
+    else{
+      //this.formValues=form.value;
+      console.log('covid value selected :',form.value);
+     form.resetForm();
+    }
+  }
+
+
+
+
+
   addGroup(formValues){
    const dialogConfig = new MatDialogConfig();
    dialogConfig.autoFocus = true;
