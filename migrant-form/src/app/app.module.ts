@@ -13,6 +13,12 @@ import {FormsModule} from "@angular/forms";
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 
 import { FormComponent } from './form/form.component';
 import { GroupDetailsComponent } from './group-details/group-details.component';
@@ -36,7 +42,11 @@ import { GroupDetailsComponent } from './group-details/group-details.component';
     MatRippleModule,
     MatButtonModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,6 +16,10 @@ export class FormComponent implements OnInit {
   formValues={};
   constructor(public dialog:MatDialog) { }
 
+  gender = '';
+  checked = '';
+ // indeterminate = false;
+  options=['Fever','Dry Cough','Tiredness','Loss of Smell/Taste','Headache','Breathing Issue']
 
   onSubmit(form:NgForm){
     if(form.invalid){
