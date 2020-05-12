@@ -6,12 +6,18 @@
 .example-form {
   min-width: 150px;
   max-width: 500px;
-  width: 100%;
+  width: 90%;
 }
 
 .example-full-width {
-  width: 100%;
+  width: 90%;
 }
+
+.name{
+  width:50%
+}
+
+
 
 td {
   padding-right: 8px;

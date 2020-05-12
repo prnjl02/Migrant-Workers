@@ -1,0 +1,38 @@
+
+<h4 style="text-align: center;margin-top:10%">Login to Migration-Sarthi</h4>
+<div class="container">
+  <div class="row">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Mobile Number</mat-label>
+    <input
+      matInput
+      name="mobileNumber"
+      ngModel
+      #mobileNumber="ngModel"
+      required
+      minlength=10
+      maxlength=10      />
+  </mat-form-field>
+<div>
+  <button mat-raised-button color="accent" [disabled]="mobileNumber.invalid" (click)="getOTP()">Get OTP</button>
+</div>
+<mat-form-field class="example-full-width" style="margin-top:5%">
+  <mat-label>Enter OTP</mat-label>
+  <input
+    matInput
+    name="OTP"
+    ngModel
+    #OTP="ngModel"
+    required
+  />
+</mat-form-field>
+
+
+<div>
+  <button mat-raised-button color="warn" [disabled]="OTP.invalid || mobileNumber.invalid" (click)="login()">Login</button>
+</div>
+
+
+  </div>
+</div>

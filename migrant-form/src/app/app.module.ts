@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {Routes,RouterModule} from "@angular/router";
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,13 +23,20 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { FormComponent } from './form/form.component';
 import { GroupDetailsComponent } from './group-details/group-details.component';
+import { LoginComponent } from './login/login.component';
 
+
+const appRoutes:Routes=[
+  {path:'',component:LoginComponent},
+  {path:'form',component:FormComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
-    GroupDetailsComponent
+    GroupDetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +54,8 @@ import { GroupDetailsComponent } from './group-details/group-details.component';
     MatRadioModule,
     MatSelectModule,
     MatStepperModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

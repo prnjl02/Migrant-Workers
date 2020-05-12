@@ -1,85 +1,66 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import{GroupDetailsComponent} from "../group-details/group-details.component";
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
 
-import {MatDialog} from "@angular/material/dialog";
-import {MatDialogConfig} from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 
+import { MatCheckbox } from "@angular/material/checkbox";
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  selector: "app-form",
+  templateUrl: "./form.component.html",
+  styleUrls: ["./form.component.css"],
 })
 export class FormComponent implements OnInit {
+  finalData = [];
+  formValues = {};
+  constructor(public dialog: MatDialog) {}
+  checkedArray = [];
+  options = [
+    "Fever",
+    "Dry Cough",
+    "Tiredness",
+    "Loss of Smell/Taste",
+    "Headache",
+    "Breathing Issue",
+  ];
 
-  formValues={};
-  constructor(public dialog:MatDialog) { }
-
-  gender = '';
-  checked = '';
-  options=['Fever','Dry Cough','Tiredness','Loss of Smell/Taste','Headache','Breathing Issue']
-
-  onSubmit(form:NgForm){
-    if(form.invalid){
+  onPersonalDetails(form: NgForm) {
+    if (form.invalid) {
       return;
-    }
-    else{
-     // this.formValues=form.value;
-      console.log('basic Details:',form.value);
-     form.resetForm();
+    } else {
+      this.finalData.push(form.value);
+      form.resetForm();
     }
   }
 
-
-  onSubmitProfessional(form:NgForm){
-    if(form.invalid){
+  onSubmitProfessional(form: NgForm) {
+    if (form.invalid) {
       return;
-    }
-    else{
-      //this.formValues=form.value;
-      console.log('professional Details:',form.value);
-     form.resetForm();
+    } else {
+      this.finalData.push(form.value);
+      form.resetForm();
     }
   }
 
+  onSubmitCovidQues(form: NgForm) {
+    var uniqueArray = [...new Set(this.checkedArray)];
+    this.finalData.push(uniqueArray);
+    form.resetForm();
+  }
 
+  somethingClick(checkbox: MatCheckbox, item: { id: string }) {
+    this.checkedArray.push(item);
+  }
 
-  onSubmitCovidQues(form:NgForm){
-    if(form.invalid){
+  onSubmitImmediateHelp(form: NgForm) {
+    if (form.invalid) {
       return;
-    }
-    else{
-      //this.formValues=form.value;
-      console.log('covid value selected :',form.value);
-     form.resetForm();
-    }
-  }
-
-
-  onSubmitImmediateHelp(form:NgForm){
-    if(form.invalid){
-      return;
-    }
-    else{
-      //this.formValues=form.value;
-      console.log('covid value selected :',form.value);
-     form.resetForm();
+    } else {
+      this.finalData.push(form.value);
+      console.log("final data is :", this.finalData);
+      form.resetForm();
     }
   }
 
-
-
-
-
-  addGroup(formValues){
-   const dialogConfig = new MatDialogConfig();
-   dialogConfig.autoFocus = true;
-   dialogConfig.width = "100%";
-   dialogConfig.data=formValues.value;
-   this.dialog.open(GroupDetailsComponent, dialogConfig);
-  }
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
